@@ -1,5 +1,11 @@
+import Form from './Form';
 import Header from './Header';
 
 export default function Program() {
-  return <Header />;
+  return (
+    <div className="text-teal-900">
+      <Header />
+      <Form />
+    </div>
+  );
 }
