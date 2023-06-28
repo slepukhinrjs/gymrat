@@ -1,3 +1,16 @@
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Container from './layout/Container';
+
 export default function App() {
-  return <h1 className="text-red-500">Test</h1>;
+  return (
+    <>
+      <Container>
+        <Header />
+        <Hero />
+        <Footer />
+      </Container>
+    </>
+  );
 }
