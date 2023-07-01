@@ -1,4 +1,4 @@
-export default async function getAttributes() {
+export async function getAttributes() {
   const url = 'https://musclewiki.p.rapidapi.com/exercises/attributes';
   const options = {
     method: 'GET',
@@ -11,6 +11,8 @@ export default async function getAttributes() {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
+    console.log(result);
+
     return result;
   } catch (error) {
     console.error(error);

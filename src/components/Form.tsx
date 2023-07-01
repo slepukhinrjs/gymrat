@@ -2,12 +2,20 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 type Props = {
-  data: {
+  isFetched: boolean;
+  attributes: {
     categories: string[];
     difficulties: string[];
     forces: string[];
     muscles: string[];
   };
+};
+
+type FormOptions = {
+  categories: string[];
+  difficulties: string[];
+  forces: string[];
+  muscles: string[];
 };
 
 type Exercise = {
@@ -16,7 +24,7 @@ type Exercise = {
   muscles: string;
 };
 
-export default function Form({ data }: Props) {
+export default function Form({ isFetched, attributes }: Props) {
   const [exercise, setExercise] = useState<Exercise>({
     category: '',
     difficulty: '',
@@ -29,8 +37,6 @@ export default function Form({ data }: Props) {
     setExercise(formData);
   }
 
-  console.log(data);
-
   const fieldStyle = 'flex flex-col gap-2 text-lg';
 
   return (
@@ -41,18 +47,21 @@ export default function Form({ data }: Props) {
           <label htmlFor="category">Category:</label>
           <select id="category" {...register('category')}>
             <option value=""></option>
+            {isFetched ? attributes.categories.map((c) => <option key={c}>{c}</option>) : null}
           </select>
         </div>
         <div className={fieldStyle}>
           <label htmlFor="difficulty">Difficulty:</label>
           <select id="difficulty" {...register('difficulty')}>
             <option value=""></option>
+            {isFetched ? attributes.difficulties.map((d) => <option key={d}>{d}</option>) : null}
           </select>
         </div>
         <div className={fieldStyle}>
           <label htmlFor="muscles">Muscles:</label>
           <select id="muscles" {...register('muscles')}>
             <option value=""></option>
+            {isFetched ? attributes.muscles.map((m) => <option key={m}>{m}</option>) : null}
           </select>
         </div>
         <button className="inline-block px-4 py-2 rounded-lg border-2 bg-teal-500 hover:bg-teal-700 text-slate-100 self-center">
